@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.permissions import AllowAny
 
 from shop.models import Category, Product
 from shop.paginators import ShopPaginator
@@ -10,6 +11,7 @@ class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = ShopPaginator
+    permission_classes = [AllowAny]
 
 
 class ProductList(generics.ListAPIView):
@@ -17,3 +19,4 @@ class ProductList(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     pagination_class = ShopPaginator
+    permission_classes = [AllowAny]
