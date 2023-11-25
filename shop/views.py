@@ -76,9 +76,9 @@ class CartDetailView(APIView):
         total_quantity = sum(item['quantity'] for item in cart_data)
         total_price = cart.get_total_price()
         return Response({
-            'items': cart_data,
+            'cart': cart_data,
             'total_quantity': total_quantity,
-            'total_price': str(total_price)
+            'order_amount': str(total_price)
         }, status=status.HTTP_200_OK)
 
 

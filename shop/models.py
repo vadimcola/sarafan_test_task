@@ -52,11 +52,7 @@ class Product(models.Model):
         return f'{self.name}'
 
     def to_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'price': str(self.price),
-        }
+        return self.name
 
     class Meta:
         verbose_name = 'Продукт'
