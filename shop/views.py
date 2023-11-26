@@ -27,6 +27,10 @@ class ProductList(generics.ListAPIView):
 
 class CartView(APIView):
     def post(self, request, *args, **kwargs):
+        """
+        Добовление товара в корзину, изменение количества товаров
+        в корзине
+        """
         product_id = request.data.get('product_id')
         quantity = request.data.get('quantity', 1)
         try:
@@ -40,6 +44,9 @@ class CartView(APIView):
                             status=status.HTTP_404_NOT_FOUND)
 
     def put(self, request, *args, **kwargs):
+        """
+        Обновление количества товара в корзине
+        """
         product_id = request.data.get('product_id')
         quantity = request.data.get('quantity')
         try:
@@ -57,6 +64,9 @@ class CartView(APIView):
                             status=status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, *args, **kwargs):
+        """
+        Удаление товара из корзины
+        """
         product_id = request.data.get('product_id')
         try:
             product = Product.objects.get(pk=product_id)
@@ -70,6 +80,9 @@ class CartView(APIView):
 
 
 class CartDetailView(APIView):
+    """
+    Просмотр корзины
+    """
     def get(self, request, *args, **kwargs):
         cart = Cart(request)
         cart_data = list(cart)
@@ -83,6 +96,7 @@ class CartDetailView(APIView):
 
 
 class CartClearView(APIView):
+    """Полная отчистка корзины"""
     def post(self, request, *args, **kwargs):
         cart = Cart(request)
         cart.clear()

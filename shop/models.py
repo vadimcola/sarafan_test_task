@@ -52,6 +52,10 @@ class Product(models.Model):
         return f'{self.name}'
 
     def to_json(self):
+        """
+        Функция возвращает имя продукта, функция используется
+        в корзине покупок
+        """
         return self.name
 
     class Meta:
